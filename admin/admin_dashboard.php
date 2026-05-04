@@ -12,7 +12,8 @@ if (!isAdmin()) {
 $guestCount       = $conn->query("SELECT COUNT(*) AS t FROM guests")->fetch_assoc()['t'];
 $roomCount        = $conn->query("SELECT COUNT(*) AS t FROM rooms")->fetch_assoc()['t'];
 $reservationCount = $conn->query("SELECT COUNT(*) AS t FROM reservations")->fetch_assoc()['t'];
-$availableRooms   = $conn->query("SELECT COUNT(*) AS t FROM rooms WHERE status='available'")->fetch_assoc()['t'];
+$today            = date('Y-m-d');
+$availableRooms   = $conn->query("SELECT COUNT(*) AS t FROM rooms r WHERE NOT EXISTS (SELECT 1 FROM reservations res WHERE res.room_id = r.room_id AND res.check_in <= '$today' AND res.check_out > '$today')")->fetch_assoc()['t'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

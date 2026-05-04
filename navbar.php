@@ -18,7 +18,7 @@ $base = ($currentDir === 'admin' || $currentDir === 'staff') ? '../' : '';
 ?>
 <nav class="cw-navbar">
   <a href="<?= $base ?>home.php" class="cw-brand">
-    <i class="bi bi-building"></i> Cool Waves Hotel
+    <i class="bi bi-building"></i> Prisma
   </a>
 
   <button class="cw-toggler" id="navToggle"><i class="bi bi-list"></i></button>

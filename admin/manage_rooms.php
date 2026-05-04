@@ -82,9 +82,22 @@ $total = $cnt_stmt->get_result()->fetch_assoc()['t'];
 $cnt_stmt->close();
 $total_pages = max(1, ceil($total / $per_page));
 
-$all_params = array_merge($params, [$per_page, $offset]);
-$all_types  = $types . 'ii';
-$data_stmt = $conn->prepare("SELECT * FROM rooms $where_sql ORDER BY room_number LIMIT ? OFFSET ?");
+$today = date('Y-m-d');
+$all_params = array_merge([$today, $today], $params, [$per_page, $offset]);
+$all_types  = 'ss' . $types . 'ii';
+$data_stmt = $conn->prepare(
+    "SELECT r.*,
+            IF(COUNT(res.reservation_id) > 0, 'occupied', 'available') AS computed_status
+     FROM rooms r
+     LEFT JOIN reservations res
+            ON res.room_id = r.room_id
+           AND res.check_in  <= ?
+           AND res.check_out >  ?
+     " . ($where_sql ? str_replace('WHERE ', 'WHERE r.', $where_sql) : '') . "
+     GROUP BY r.room_id
+     ORDER BY r.room_number
+     LIMIT ? OFFSET ?"
+);
 $data_stmt->bind_param($all_types, ...$all_params);
 $data_stmt->execute();
 $rooms = $data_stmt->get_result();
@@ -144,7 +157,7 @@ $data_stmt->close();
           <label class="form-label"><i class="bi bi-tag"></i> Room Type <span style="color:var(--danger)">*</span></label>
           <select class="form-select <?= isset($errors['type']) ? 'is-invalid':'' ?>" name="type">
             <option value="">— Select Type —</option>
-            <?php foreach(['Standard', 'Deluxe', 'Suite', 'Family', 'Presidential'] as $t): ?>
+            <?php foreach(['Standard', 'Deluxe', 'Suite', 'Presidential'] as $t): ?>
               <option value="<?= $t ?>" <?= $vals['type'] === $t ? 'selected':'' ?>><?= $t ?></option>
             <?php endforeach; ?>
           </select>
@@ -214,7 +227,7 @@ $data_stmt->close();
                 <td><strong><?= htmlspecialchars($r['room_number']) ?></strong></td>
                 <td><?= htmlspecialchars($r['room_type']) ?></td>
                 <td>₱<?= number_format($r['price'], 2) ?></td>
-                <td><span class="badge-status <?= $r['status'] ?>"><?= ucfirst($r['status']) ?></span></td>
+                <td><span class="badge-status <?= $r['computed_status'] ?>"><?= ucfirst($r['computed_status']) ?></span></td>
                 <td>
                   <a href="#" class="btn-danger-sm"
                      onclick="confirmDelete(<?= $r['room_id'] ?>, '<?= htmlspecialchars($r['room_number']) ?>'); return false;">

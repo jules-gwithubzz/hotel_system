@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login — Cool Waves Hotel</title>
+<title>Login - Hotel </title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
@@ -60,8 +60,8 @@ if (isset($_POST['login'])) {
   <div class="login-card">
     <div class="login-logo">
       <i class="bi bi-building"></i>
-      <h1>Cool Waves Hotel</h1>
-      <p>Staff &amp; Admin Portal</p>
+      <h1>Prisma</h1>
+      <p>Admin &amp; Staff Portal</p>
     </div>
 
     <?php if ($error): ?>

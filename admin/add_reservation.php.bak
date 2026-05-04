@@ -11,9 +11,15 @@ if (!isAdmin() && !isStaff()) {
 $today  = date('Y-m-d');
 $guests = $conn->query("SELECT guest_id, full_name FROM guests ORDER BY full_name");
 $rooms  = $conn->query(
-    "SELECT room_id, room_number, room_type, price
-     FROM rooms
-     ORDER BY room_number"
+    "SELECT r.room_id, r.room_number, r.room_type, r.price
+     FROM rooms r
+     WHERE NOT EXISTS (
+         SELECT 1 FROM reservations res
+         WHERE res.room_id    = r.room_id
+           AND res.check_in  <= '$today'
+           AND res.check_out  > '$today'
+     )
+     ORDER BY r.room_number"
 );
 $errors  = [];
 $success = '';
@@ -38,24 +44,6 @@ if (isset($_POST['add'])) {
         $errors['check_in'] = "Check-in date cannot be in the past.";
 
     if (empty($errors)) {
-        // Check for overlapping reservations on the chosen dates
-        $overlap = $conn->prepare(
-            "SELECT 1 FROM reservations
-             WHERE room_id   = ?
-               AND check_in  < ?
-               AND check_out > ?
-             LIMIT 1"
-        );
-        $overlap->bind_param("iss", $room_id, $check_out, $check_in);
-        $overlap->execute();
-        $overlap->store_result();
-        if ($overlap->num_rows > 0) {
-            $errors['room_id'] = "This room is already booked for the selected dates.";
-        }
-        $overlap->close();
-    }
-
-    if (empty($errors)) {
         $stmt = $conn->prepare("INSERT INTO reservations (guest_id, room_id, check_in, check_out) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("iiss", $guest_id, $room_id, $check_in, $check_out);
         if ($stmt->execute()) {
@@ -68,11 +56,17 @@ if (isset($_POST['add'])) {
             }
             $success = "Reservation added successfully!";
             $vals = ['guest_id' => '', 'room_id' => '', 'check_in' => '', 'check_out' => ''];
-            // Refresh room list — show all rooms
+            // Refresh room list — show only rooms with no active reservation today
             $rooms = $conn->query(
-                "SELECT room_id, room_number, room_type, price
-                 FROM rooms
-                 ORDER BY room_number"
+                "SELECT r.room_id, r.room_number, r.room_type, r.price
+                 FROM rooms r
+                 WHERE NOT EXISTS (
+                     SELECT 1 FROM reservations res
+                     WHERE res.room_id    = r.room_id
+                       AND res.check_in  <= '$today'
+                       AND res.check_out  > '$today'
+                 )
+                 ORDER BY r.room_number"
             );
         } else {
             $errors['db'] = "Database error: " . $conn->error;
