@@ -3,7 +3,7 @@ Hotel Management System
 
 Description
 -----------
-This is a web-based hotel management system for Cool Waves Hotel, built using PHP and MySQL. It provides role-based access for administrators and staff to manage hotel operations including rooms, guests, reservations, and users.
+This is a web-based hotel management system prototype, built using PHP and MySQL. It provides role-based access for administrators and staff to manage hotel operations including rooms, guests, reservations, and users.
 
 Features
 --------
