@@ -113,6 +113,9 @@ $data_stmt->close();
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="../images/22.mp4" type="video/mp4">
+</video>
 
 <?php include '../navbar.php'; ?>
 
@@ -186,7 +189,10 @@ $data_stmt->close();
     <div class="cw-card">
       <div class="cw-card-header">
         <span class="cw-card-title"><i class="bi bi-table"></i> All Rooms
-          <span style="color:var(--text-muted); font-size:0.9rem; font-family:'DM Sans',sans-serif; font-weight:400;">(<?= $total ?>)</span>
+           <span style="color:var(--text-muted); font-size:0.9rem; font-family:'Inter',sans-serif; font-weight:400;">
+             (<?= $total ?> total)
+           </span>
+          <span style="color:var(--text-muted); font-size:0.9rem; font-family:'Inter',sans-serif; font-weight:400;">(<?= $total ?>)</span>
         </span>
       </div>
 

@@ -52,6 +52,9 @@ if (isset($_POST['add'])) {
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="../images/22.mp4" type="video/mp4">
+</video>
 
 <?php include '../navbar.php'; ?>
 

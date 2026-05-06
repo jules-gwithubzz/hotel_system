@@ -1,7 +1,7 @@
-/* ===== COOL WAVES HOTEL — GLOBAL STYLES ===== */
+/* ===== GLOBAL STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
 :root {
   --gold:        #c9a84c;
   --gold-light:  #e8c97a;
@@ -26,7 +26,7 @@
 html { font-size: 15px; scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--navy);
   color: var(--text-main);
   min-height: 100vh;
@@ -34,16 +34,25 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Background texture ── */
+/* ── Video Background ── */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* ── Background overlay ── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(201,168,76,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 90% 80%, rgba(61,140,219,0.06) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 /* ── Scrollbar ── */
@@ -53,11 +62,12 @@ body::before {
 
 /* ── Typography ── */
 h1, h2, h3, h4, h5 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.01em;
 }
+
 
 /* ── Navbar ── */
 .cw-navbar {
@@ -75,7 +85,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .cw-brand {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--gold);
@@ -165,7 +175,7 @@ h1, h2, h3, h4, h5 {
   border: none;
   border-radius: var(--radius);
   padding: 0.55rem 1.25rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
@@ -184,7 +194,7 @@ h1, h2, h3, h4, h5 {
   border: 1px solid var(--navy-border);
   border-radius: var(--radius);
   padding: 0.55rem 1.25rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   cursor: pointer;
   transition: all var(--transition);
@@ -247,6 +257,7 @@ h1, h2, h3, h4, h5 {
 
 /* ── Cards ── */
 .cw-card {
+  font-family: 'Inter', sans-serif;
   background: var(--navy-card);
   border: 1px solid var(--navy-border);
   border-radius: var(--radius-lg);
@@ -265,8 +276,10 @@ h1, h2, h3, h4, h5 {
   border-bottom: 1px solid var(--navy-border);
 }
 
+
+
 .cw-card-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.4rem;
   color: var(--text-main);
   display: flex;
@@ -309,7 +322,7 @@ h1, h2, h3, h4, h5 {
 .stat-card.green .stat-icon { color: var(--success); }
 
 .stat-value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Inter', sans-serif;
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
@@ -374,7 +387,7 @@ h1, h2, h3, h4, h5 {
   border-radius: var(--radius);
   padding: 0.65rem 0.9rem;
   color: var(--text-main);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   transition: border-color var(--transition), box-shadow var(--transition);
   outline: none;
@@ -609,7 +622,7 @@ h1, h2, h3, h4, h5 {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .cw-toggler { display: block; }
+  .cw-toggler { display: block; } 
   .cw-nav-links, .cw-nav-right {
     display: none;
     flex-direction: column;

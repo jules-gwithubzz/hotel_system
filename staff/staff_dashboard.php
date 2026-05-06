@@ -19,11 +19,14 @@ $availableRooms   = $conn->query("SELECT COUNT(*) AS t FROM rooms r WHERE NOT EX
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Staff Dashboard — Cool Waves Hotel</title>
+<title>Staff Dashboard</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="../images/22.mp4" type="video/mp4">
+</video>
 
 <?php include '../navbar.php'; ?>
 

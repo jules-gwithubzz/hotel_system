@@ -55,6 +55,9 @@ if (isset($_POST['login'])) {
 </style>
 </head>
 <body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="images/22.mp4" type="video/mp4">
+</video>
 
 <div class="login-wrap">
   <div class="login-card">
@@ -95,7 +98,7 @@ if (isset($_POST['login'])) {
       </button>
     </form>
 
-    <div class="login-footer">&copy; <?= date('Y') ?> Cool Waves Hotel Management System</div>
+    <div class="login-footer">&copy; <?= date('Y') ?> Prisma Hotel Inc.</div>
   </div>
 </div>
 

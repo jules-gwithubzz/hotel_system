@@ -83,11 +83,16 @@ function reservationStatus($check_in, $check_out, $today) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reservations — Cool Waves Hotel</title>
+<title>Reservations</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="../images/22.mp4" type="video/mp4">
+</video>
 
 <?php include '../navbar.php'; ?>
 
@@ -101,7 +106,7 @@ function reservationStatus($check_in, $check_out, $today) {
   <div class="cw-card">
     <div class="cw-card-header">
       <span class="cw-card-title"><i class="bi bi-table"></i> All Reservations
-        <span style="color:var(--text-muted); font-size:0.9rem; font-family:'DM Sans',sans-serif; font-weight:400;">
+        <span style="color:var(--text-muted); font-size:.9rem; font-family:'Inter',sans-serif; font-weight:400;">
           (<?= $total ?> total)
         </span>
       </span>

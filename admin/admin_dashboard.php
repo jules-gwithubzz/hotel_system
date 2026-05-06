@@ -20,11 +20,14 @@ $availableRooms   = $conn->query("SELECT COUNT(*) AS t FROM rooms r WHERE NOT EX
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — Cool Waves Hotel</title>
+<title>Admin Dashboard</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="../images/22.mp4" type="video/mp4">
+</video>
 
 <?php include '../navbar.php'; ?>
 
@@ -40,29 +43,30 @@ $availableRooms   = $conn->query("SELECT COUNT(*) AS t FROM rooms r WHERE NOT EX
     <div class="stat-card gold">
       <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
       <div class="stat-value"><?= $guestCount ?></div>
-      <div class="stat-label">Total Guests</div>
+      <div class="stat-label">Guests</div>
     </div>
     <div class="stat-card blue">
-      <div class="stat-icon"><i class="bi bi-door-open-fill"></i></div>
-      <div class="stat-value"><?= $roomCount ?></div>
-      <div class="stat-label">Total Rooms</div>
-    </div>
-    <div class="stat-card green">
       <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
       <div class="stat-value"><?= $reservationCount ?></div>
       <div class="stat-label">Reservations</div>
     </div>
-    <div class="stat-card gold">
+    <div class="stat-card green">
       <div class="stat-icon"><i class="bi bi-check-circle-fill"></i></div>
       <div class="stat-value"><?= $availableRooms ?></div>
       <div class="stat-label">Available Rooms</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-icon"><i class="bi bi-door-open-fill"></i></div>
+      <div class="stat-value"><?= $roomCount ?></div>
+      <div class="stat-label">Total Rooms</div>
     </div>
   </div>
 
   <!-- Quick actions -->
   <div class="cw-card">
     <div class="cw-card-header">
-      <span class="cw-card-title"><i class="bi bi-grid-1x2"></i> Quick Actions</span>
+      <span class="cw-card-title" style="font-family:'Orbitron', sans-serif; font-weight:500;">
+        <i class="bi bi-grid-1x2"></i> Quick Actions</span>
     </div>
     <div class="grid-3">
       <a href="add_guest.php" class="action-card">
