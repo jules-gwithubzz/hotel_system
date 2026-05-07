@@ -43,19 +43,19 @@ $availableRooms   = $conn->query("SELECT COUNT(*) AS t FROM rooms r WHERE NOT EX
       <div class="stat-label">Total Guests</div>
     </div>
     <div class="stat-card blue">
-      <div class="stat-icon"><i class="bi bi-door-open-fill"></i></div>
-      <div class="stat-value"><?= $roomCount ?></div>
-      <div class="stat-label">Total Rooms</div>
-    </div>
-    <div class="stat-card green">
       <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
       <div class="stat-value"><?= $reservationCount ?></div>
       <div class="stat-label">Reservations</div>
     </div>
-    <div class="stat-card gold">
+    <div class="stat-card green">
       <div class="stat-icon"><i class="bi bi-check-circle-fill"></i></div>
       <div class="stat-value"><?= $availableRooms ?></div>
       <div class="stat-label">Available Rooms</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-icon"><i class="bi bi-door-open-fill"></i></div>
+      <div class="stat-value"><?= $roomCount ?></div>
+      <div class="stat-label">Total Rooms</div>
     </div>
   </div>
 

@@ -30,7 +30,7 @@ $base = ($currentDir === 'admin' || $currentDir === 'staff') ? '../' : '';
       <?= navLink($base.'staff/staff_dashboard.php', 'speedometer2', 'Dashboard', $current) ?>
     <?php endif; ?>
     <?= navLink($base.'admin/add_guest.php',         'person-plus',  'Add Guest',      $current) ?>
-    <?= navLink($base.'admin/add_reservation.php',   'calendar-plus','Reservation',    $current) ?>
+    <?= navLink($base.'admin/add_reservation.php',   'calendar-plus','New Reservation',    $current) ?>
     <?= navLink($base.'admin/view_reservations.php', 'list-check',   'Reservations',   $current) ?>
     <?php if ($isAdmin): ?>
       <?= navLink($base.'admin/manage_rooms.php',    'door-open',    'Rooms',          $current) ?>

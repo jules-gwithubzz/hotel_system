@@ -20,6 +20,7 @@ if (isset($_POST['add'])) {
     // Validation
     if (empty($name))                        $errors['name']    = "Full name is required.";
     elseif (strlen($name) < 2)               $errors['name']    = "Name must be at least 2 characters.";
+    elseif (!preg_match("/^[\p{L}\s\-'.]+$/u", $name)) $errors['name'] = "Name must contain letters only (no numbers or special characters).";
 
     if (!empty($contact) && !preg_match('/^[\d\s\+\-\(\)]{7,20}$/', $contact))
                                              $errors['contact'] = "Enter a valid contact number.";
@@ -141,6 +142,12 @@ document.getElementById('guestForm').addEventListener('submit', function(e) {
 
   if (!name.value.trim() || name.value.trim().length < 2) {
     name.classList.add('is-invalid');
+    document.getElementById('err-name').textContent = 'Full name is required.';
+    document.getElementById('err-name').classList.add('visible');
+    valid = false;
+  } else if (!/^[\p{L}\s\-'.]+$/u.test(name.value.trim())) {
+    name.classList.add('is-invalid');
+    document.getElementById('err-name').textContent = 'Name must contain letters only (no numbers or special characters).';
     document.getElementById('err-name').classList.add('visible');
     valid = false;
   } else { name.classList.add('is-valid'); }

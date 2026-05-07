@@ -184,8 +184,6 @@ $data_stmt->close();
            <span style="color:var(--text-muted); font-size:0.9rem; font-family:'DM Sans',sans-serif; font-weight:400;">
              (<?= $total ?> total)
            </span>
-          <span style="color:var(--text-muted); font-size:0.9rem; font-family:'DM Sans',sans-serif; font-weight:400;">(<?= $total ?>)</span>
-        </span>
       </div>
 
       <form method="GET" class="search-bar" style="margin-bottom:1rem;">
